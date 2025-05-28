@@ -3,94 +3,1178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nutrition & Fitness: Beyond the Label</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Beyond the Label: An Anthropological Analysis of Contemporary Nutrition Practices</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --bg-dark: #1a1a2e;
+            --bg-darker: #16213e;
+            --accent: #e94560;
+            --accent-light: #ff6b81;
+            --text: #f8f9fa;
+            --text-secondary: #adb5bd;
+            --pastel-blue: #a7c5eb;
+            --pastel-pink: #f8c3cd;
+            --pastel-purple: #d4b3ff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 1rem 5%;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            font-weight: 500;
+            position: relative;
+            text-decoration: none;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--bg-darker), var(--bg-dark));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+            opacity: 0.05;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--accent), var(--pastel-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--accent), var(--accent-light));
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(233, 69, 96, 0.4);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 5%;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text);
+        }
+
+        /* Introduction Section */
+        .intro-section {
+            background-color: var(--bg-darker);
+            padding: 6rem 5%;
+        }
+
+        .intro-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .key-concepts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .concept-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        /* Research Cards */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .research-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2.5rem;
+            border-radius: 15px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+        }
+
+        .research-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-color: var(--accent);
+        }
+
+        .research-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        /* Protein Commodification Section */
+        .protein-section {
+            background: linear-gradient(135deg, var(--bg-dark), var(--bg-darker));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .protein-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 3rem 0;
+        }
+
+        .protein-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .protein-item:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+
+        /* Profile Cards */
+        .profiles-section {
+            background-color: var(--bg-dark);
+        }
+
+        .profile-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .profile-card {
+            background: var(--bg-darker);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-header {
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: white;
+        }
+
+        .profile-content {
+            padding: 2rem;
+        }
+
+        .profile-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Interactive Elements */
+        .interactive-quiz {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+        }
+
+        .quiz-question {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        /* Social Media Analysis */
+        .social-media-section {
+            background-color: var(--bg-darker);
+        }
+
+        .social-feed {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .social-post {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent);
+            margin-right: 1rem;
+        }
+
+        .hashtag {
+            color: var(--accent);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .hashtag:hover {
+            color: var(--accent-light);
+        }
+
+        /* Data Visualization */
+        .data-viz {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 2rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-darker);
+            padding: 3rem 5%;
+            text-align: center;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: var(--bg-darker);
+            margin: 5% auto;
+            padding: 3rem;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .close-modal:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            h2 { font-size: 2rem; }
+            .nav-links { display: none; }
+        }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Navigation -->
     <nav class="navbar">
-        <div class="logo">Nutrition & Fitness</div>
+        <div class="logo">Beyond the Label</div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
-            <li><a href="#research">Research</a></li>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#protein">Protein Culture</a></li>
             <li><a href="#profiles">Profiles</a></li>
-            <li><a href="#about">About</a></li>
+            <li><a href="#social-media">Social Media</a></li>
+            <li><a href="#gender">Gender & Food</a></li>
+            <li><a href="#labels">Decoding Labels</a></li>
         </ul>
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
     </nav>
 
+    <!-- Hero Section -->
     <header id="home" class="hero">
         <div class="hero-content">
             <h1>Beyond the Label</h1>
-            <p>Exploring the cultural narratives behind nutrition, fitness, and identity</p>
-            <a href="#research" class="cta-button">Explore Research</a>
-        </div>
-        <div class="scroll-down">
-            <span>Scroll Down</span>
-            <i class="fas fa-chevron-down"></i>
+            <p>An Anthropological Analysis of Contemporary Nutrition Practices, Commodification, Identity, and Media Influence</p>
+            <a href="#introduction" class="cta-button">Begin Exploration</a>
         </div>
     </header>
 
-    <section id="research" class="research-section">
-        <h2>Research & Analysis</h2>
-        <div class="research-grid">
-            <div class="research-card">
-                <i class="fas fa-dumbbell"></i>
-                <h3>Bodybuilding Diets</h3>
-                <p>Examining the cultural significance of high-protein diets in fitness communities.</p>
-            </div>
-            <div class="research-card">
-                <i class="fas fa-hashtag"></i>
-                <h3>Social Media Impact</h3>
-                <p>How platforms shape our perceptions of health and nutrition.</p>
-            </div>
-            <div class="research-card">
-                <i class="fas fa-venus-mars"></i>
-                <h3>Gender & Nutrition</h3>
-                <p>Exploring the intersection of food choices and gender identity.</p>
+    <!-- Introduction Section -->
+    <section id="introduction" class="intro-section">
+        <div class="intro-content">
+            <h2>Situating Nutrition in Contemporary Culture</h2>
+            <p class="intro-text">
+                Contemporary practices surrounding nutrition intake extend far beyond mere biological necessity. They've evolved into a complex social phenomenon deeply intertwined with cultural meanings, identity formation, and media representation. As both a computer science major and avid bodybuilder, I bring a unique interdisciplinary perspective to this analysis.
+            </p>
+            <p class="intro-text">
+                This project examines how nutrition labeling, bodybuilding dietary regimes, and social media's pervasive influence shape not only what we eat, but who we become within social spaces. Drawing on Mary Douglas's foundational work in "Purity and Danger," we can frame contemporary nutritional anxieties—such as "clean eating" and the avoidance of "processed foods"—as modern iterations of fundamental cultural mechanisms for defining purity and warding off pollution.
+            </p>
+            
+            <div class="key-concepts">
+                <div class="concept-card">
+                    <h3><i class="fas fa-brain"></i> Embodied Knowledge</h3>
+                    <p>The lived experience of nutrition and fitness, where individuals learn and internalize dietary "rules" through their bodies.</p>
+                </div>
+                <div class="concept-card">
+                    <h3><i class="fas fa-globe"></i> Cultural Cosmologies</h3>
+                    <p>Shared understandings of what constitutes "good" nutrition, varying across communities and subcultures.</p>
+                </div>
+                <div class="concept-card">
+                    <h3><i class="fas fa-venus-mars"></i> Gendered Expectations</h3>
+                    <p>How masculine and feminine ideals shape consumption practices and food choices.</p>
+                </div>
+                <div class="concept-card">
+                    <h3><i class="fas fa-users"></i> Imagined Communities</h3>
+                    <p>Virtual fitness and nutrition groups that create belonging through shared practices and goals.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="profiles" class="profiles-section">
-        <h2>Student Profiles</h2>
-        <div class="profile-container">
-            <div class="profile-card">
-                <div class="profile-img" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80');">
-                    <div class="profile-overlay">
-                        <h3>The Bodybuilder</h3>
+    <!-- Protein Commodification Section -->
+    <section id="protein" class="protein-section">
+        <div class="intro-content">
+            <h2>The Rise of Protein Commodification</h2>
+            <p class="intro-text">
+                Protein has transcended its role as a mere nutrient to become a marketing powerhouse. Today, protein claims appear on an increasingly wide array of products, transforming this essential macronutrient into a symbol laden with cultural meaning.
+            </p>
+            
+            <h3 style="text-align: center; margin: 2rem 0;">Products Now Marketing Protein Content:</h3>
+            <div class="protein-grid">
+                <div class="protein-item">Protein Waffles</div>
+                <div class="protein-item">High-Protein Pancakes</div>
+                <div class="protein-item">Protein Peanut Butter</div>
+                <div class="protein-item">Protein Yogurt</div>
+                <div class="protein-item">Protein Pasta</div>
+                <div class="protein-item">Protein Bread</div>
+                <div class="protein-item">Protein Coffee</div>
+                <div class="protein-item">Protein Chips</div>
+                <div class="protein-item">Protein Ice Cream</div>
+                <div class="protein-item">Protein Water</div>
+            </div>
+
+            <div class="data-viz">
+                <h3>The "Health Halo" Effect</h3>
+                <p>When a product is labeled "high protein," consumers often perceive it as inherently healthy, regardless of other nutritional components like sugar, sodium, or unhealthy fats. This psychological phenomenon drives purchasing decisions and shapes dietary patterns.</p>
+                <div class="chart-container" id="proteinChart">
+                    <!-- Chart would be rendered here with actual data -->
+                    <div style="text-align: center; padding: 3rem;">
+                        <i class="fas fa-chart-line" style="font-size: 3rem; color: var(--accent);"></i>
+                        <p style="margin-top: 1rem;">Protein supplement industry: $2B+ in 2021, projected $10.8B by 2030</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus Profiles Section -->
+    <section id="profiles" class="profiles-section">
+        <h2>Campus Nutrition Profiles</h2>
+        <p style="text-align: center; color: var(--text-secondary); max-width: 800px; margin: 0 auto 3rem;">
+            Through ethnographic interviews with students, these profiles reveal the diverse embodied experiences and dietary "rules" that shape nutrition practices on campus.
+        </p>
+        
+        <div class="profile-container">
+            <!-- The Bodybuilder Profile -->
+            <div class="profile-card" onclick="openProfile('bodybuilder')">
+                <div class="profile-header">
+                    <h3><i class="fas fa-dumbbell"></i> The Bodybuilder</h3>
+                    <p>"Jake" - Computer Science Major</p>
+                </div>
                 <div class="profile-content">
-                    <p>"My diet is a crucial part of my identity. I track every macro to achieve my ideal physique."</p>
-                    <a href="#" class="profile-link">Read Full Story</a>
+                    <p style="font-style: italic; margin-bottom: 1rem;">
+                        "My diet is a crucial part of my identity. Every macro matters when you're sculpting your physique."
+                    </p>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <div class="stat-value">200g</div>
+                            <div class="stat-label">Daily Protein</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">6</div>
+                            <div class="stat-label">Meals/Day</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">3,200</div>
+                            <div class="stat-label">Calories</div>
+                        </div>
+                    </div>
+                    <p>Jake's relationship with food is meticulously calculated. His day begins at 5 AM with a protein shake, followed by carefully portioned meals every 3 hours. "It's not just about eating," he explains, "it's about optimization."</p>
                 </div>
             </div>
-            <!-- More profile cards would go here -->
-        </div>
-    </section>
 
-    <section id="about" class="about-section">
-        <div class="about-content">
-            <h2>About This Project</h2>
-            <p>This website is part of an anthropological exploration of contemporary nutrition practices, examining how cultural narratives shape our relationship with food, fitness, and identity.</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
+            <!-- The Runner Profile -->
+            <div class="profile-card" onclick="openProfile('runner')">
+                <div class="profile-header">
+                    <h3><i class="fas fa-running"></i> The Runner</h3>
+                    <p>"Sarah" - Pre-Med Student</p>
+                </div>
+                <div class="profile-content">
+                    <p style="font-style: italic; margin-bottom: 1rem;">
+                        "For me, food is fuel. But I've learned that what works for bodybuilders doesn't work for endurance."
+                    </p>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <div class="stat-value">60%</div>
+                            <div class="stat-label">Carbs</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">15mi</div>
+                            <div class="stat-label">Daily Run</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">2,600</div>
+                            <div class="stat-label">Calories</div>
+                        </div>
+                    </div>
+                    <p>Sarah's approach contrasts sharply with gym culture's protein obsession. "I tried high-protein diets, but my performance suffered. Now I embrace carbs—they're not the enemy social media makes them out to be."</p>
+                </div>
+            </div>
+
+            <!-- The Recreational Gym-Goer Profile -->
+            <div class="profile-card" onclick="openProfile('recreational')">
+                <div class="profile-header">
+                    <h3><i class="fas fa-heart"></i> The Recreational Gym-Goer</h3>
+                    <p>"Alex" - Psychology Major</p>
+                </div>
+                <div class="profile-content">
+                    <p style="font-style: italic; margin-bottom: 1rem;">
+                        "I'm trying to find balance between being healthy and actually enjoying my college experience."
+                    </p>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <div class="stat-value">3-4x</div>
+                            <div class="stat-label">Gym/Week</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">80/20</div>
+                            <div class="stat-label">Diet Rule</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Flexible</div>
+                            <div class="stat-label">Approach</div>
+                        </div>
+                    </div>
+                    <p>Alex represents the majority who navigate between fitness culture's extremes and social pressures. "Instagram makes me feel like I should meal prep everything, but sometimes you just want pizza with friends."</p>
+                </div>
+            </div>
+
+            <!-- The Non-Gym Goer Profile -->
+            <div class="profile-card" onclick="openProfile('nongym')">
+                <div class="profile-header">
+                    <h3><i class="fas fa-book"></i> The Non-Gym Goer</h3>
+                    <p>"Morgan" - English Literature Major</p>
+                </div>
+                <div class="profile-content">
+                    <p style="font-style: italic; margin-bottom: 1rem;">
+                        "I feel like there's this constant pressure to be 'optimizing' my nutrition. Can't food just be... food?"
+                    </p>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <div class="stat-value">Intuitive</div>
+                            <div class="stat-label">Eating Style</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Cultural</div>
+                            <div class="stat-label">Food Focus</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Variable</div>
+                            <div class="stat-label">Meals</div>
+                        </div>
+                    </div>
+                    <p>Morgan offers a critical perspective on campus food culture. "The gym bros make me feel guilty for not counting macros, but my grandmother's recipes feed more than just my body—they feed my soul."</p>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Social Media Analysis Section -->
+    <section id="social-media" class="social-media-section">
+        <h2>The Pervasive Influence of Social Media</h2>
+        <p style="text-align: center; color: var(--text-secondary); max-width: 800px; margin: 0 auto 3rem;">
+            Social media has fundamentally reshaped our nutritional landscapes, creating virtual "imagined communities" while propagating both helpful information and toxic trends.
+        </p>
+
+        <div class="interactive-quiz">
+            <h3 class="quiz-question">How has social media influenced your food choices?</h3>
+            <div class="quiz-options">
+                <div class="quiz-option" onclick="selectQuizOption(this)">
+                    <i class="fas fa-camera"></i> I've tried recipes or diets I've seen on TikTok/Instagram
+                </div>
+                <div class="quiz-option" onclick="selectQuizOption(this)">
+                    <i class="fas fa-chart-line"></i> I track my food intake using apps or share my meals online
+                </div>
+                <div class="quiz-option" onclick="selectQuizOption(this)">
+                    <i class="fas fa-users"></i> I'm part of online fitness/nutrition communities
+                </div>
+                <div class="quiz-option" onclick="selectQuizOption(this)">
+                    <i class="fas fa-times-circle"></i> Social media has made me anxious about my eating habits
+                </div>
+            </div>
+        </div>
+
+        <h3 style="text-align: center; margin: 3rem 0;">Common Social Media Food Trends</h3>
+        <div class="social-feed">
+            <div class="social-post">
+                <div class="post-header">
+                    <div class="post-avatar"></div>
+                    <div>
+                        <strong>@fitspo_daily</strong>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">2.3M followers</p>
+                    </div>
+                </div>
+                <p>"What I Eat in a Day to stay SHREDDED 💪"</p>
+                <p style="margin: 1rem 0;">
+                    <span class="hashtag">#WIEAD</span> 
+                    <span class="hashtag">#CleanEating</span> 
+                    <span class="hashtag">#Fitspo</span>
+                </p>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                    ⚠️ Research shows only 2% of WIEAD videos contain accurate nutritional information
+                </p>
+            </div>
+
+            <div class="social-post">
+                <div class="post-header">
+                    <div class="post-avatar" style="background: var(--pastel-pink);"></div>
+                    <div>
+                        <strong>@protein_everything</strong>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">845K followers</p>
+                    </div>
+                </div>
+                <p>"Did you know you can add protein powder to literally ANYTHING? Here's my protein coffee recipe! ☕"</p>
+                <p style="margin: 1rem 0;">
+                    <span class="hashtag">#ProteinCoffee</span> 
+                    <span class="hashtag">#HighProtein</span> 
+                    <span class="hashtag">#GymLife</span>
+                </p>
+            </div>
+
+            <div class="social-post">
+                <div class="post-header">
+                    <div class="post-avatar" style="background: var(--pastel-blue);"></div>
+                    <div>
+                        <strong>@carnivore_king</strong>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">523K followers</p>
+                    </div>
+                </div>
+                <p>"Day 365 of eating ONLY meat. Never felt better! Who needs vegetables when you have ribeye? 🥩"</p>
+                <p style="margin: 1rem 0;">
+                    <span class="hashtag">#CarnivoreDiet</span> 
+                    <span class="hashtag">#MeatOnly</span> 
+                    <span class="hashtag">#AlphaMale</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="data-viz" style="margin-top: 3rem;">
+            <h3>The Dark Side: Body Dysmorphia and "Dieting Pain"</h3>
+            <p>Social media's constant stream of idealized bodies and restrictive diets contributes to serious psychological impacts:</p>
+            <ul style="list-style: none; padding: 0; margin: 2rem 0;">
+                <li style="padding: 1rem; background: rgba(255,255,255,0.03); margin: 0.5rem 0; border-radius: 10px;">
+                    <i class="fas fa-brain" style="color: var(--accent); margin-right: 1rem;"></i>
+                    <strong>Muscle Dysmorphia:</strong> Affecting bodybuilders who believe they're never muscular enough
+                </li>
+                <li style="padding: 1rem; background: rgba(255,255,255,0.03); margin: 0.5rem 0; border-radius: 10px;">
+                    <i class="fas fa-chart-line" style="color: var(--accent); margin-right: 1rem;"></i>
+                    <strong>Constant Comparison:</strong> "What I Eat in a Day" videos create unrealistic benchmarks
+                </li>
+                <li style="padding: 1rem; background: rgba(255,255,255,0.03); margin: 0.5rem 0; border-radius: 10px;">
+                    <i class="fas fa-exclamation-triangle" style="color: var(--accent); margin-right: 1rem;"></i>
+                    <strong>Misinformation:</strong> 90% of adolescents exposed to unhealthy food marketing on social media
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Gender and Food Section -->
+    <section id="gender" class="intro-section">
+        <div class="intro-content">
+            <h2>Gender, Food, and Masculinity</h2>
+            <p class="intro-text">
+                The intersection of gender and food reveals deeply ingrained cultural narratives. Men and women often exhibit divergent dietary patterns shaped not only by biological factors but profoundly by societal norms and cultural contexts.
+            </p>
+
+            <div class="data-viz">
+                <h3>Gendered Food Associations</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+                    <div style="background: rgba(255,255,255,0.03); padding: 2rem; border-radius: 15px;">
+                        <h4 style="color: var(--pastel-blue); margin-bottom: 1rem;"><i class="fas fa-mars"></i> "Masculine" Foods</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 0.5rem 0;"><i class="fas fa-drumstick-bite"></i> Red meat & protein</li>
+                            <li style="padding: 0.5rem 0;"><i class="fas fa-fire"></i> Spicy, bold flavors</li>
+                            <li style="padding: 0.5rem 0;"><i class="fas fa-beer"></i> Large portions</li>
+                            <li style="padding: 0.5rem 0;"><i class="fas fa-utensils"></i> "Hearty" meals</li>
+                        </ul>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.03); padding: 2rem; border-radius: 15px;">
+                        <h4 style="color: var(--pastel-pink); margin-bottom: 1rem;"><i class="fas fa-venus"></i> "Feminine" Foods</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 0.5rem 0;"><i class="fas fa-leaf"></i> Salads & vegetables</li>
+                            <li style="padding: 0.5rem 0;"><i class="fas fa-coffee"></i> Light, delicate flavors</li>
+                            <li style="padding: 0.5rem 0;"><i class="fas fa-utensils"></i> Smaller portions</li>
+                            <li style="padding: 0.5rem 0;"><i class="fas fa-glass-whiskey"></i> Diet products</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept-card" style="margin: 2rem 0;">
+                <h3>The Concept of "Gender Contamination"</h3>
+                <p>When foods strongly associated with one gender are consumed by another, they can be perceived as "contaminating" that gender category. This is why:</p>
+                <ul style="margin-top: 1rem; padding-left: 2rem;">
+                    <li>Diet sodas were rebranded as "Pepsi Max" with extreme sports imagery for men</li>
+                    <li>Yogurt marketed to men emphasizes protein content ("brogurt")</li>
+                    <li>The term "soy boy" emerged as a derogatory term for men who consume soy products</li>
+                    <li>Men may avoid ordering salads on dates to maintain masculine image</li>
+                </ul>
+            </div>
+
+            <blockquote style="background: rgba(255,255,255,0.03); padding: 2rem; border-left: 4px solid var(--accent); margin: 2rem 0; font-style: italic;">
+                "Real men eat meat" - This pervasive cultural narrative links meat consumption with strength, power, and virility. Men who refuse meat often have their masculinity questioned, creating social pressure that shapes dietary choices beyond nutritional needs.
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- Decoding Labels Section -->
+    <section id="labels" class="protein-section">
+        <div class="intro-content">
+            <h2>Decoding Dietary Directives</h2>
+            <p class="intro-text">
+                Nutrition labels are not merely passive providers of information—they are active communicators that convey "unspoken information," functioning as social signals and "commodified promises of transformation."
+            </p>
+
+            <div class="interactive-quiz">
+                <h3 class="quiz-question">The "Health Halo" Effect in Action</h3>
+                <p style="margin-bottom: 2rem;">Which product would you perceive as healthier?</p>
+                <div class="quiz-options" style="grid-template-columns: 1fr 1fr;">
+                    <div class="quiz-option">
+                        <h4>Product A</h4>
+                        <p><strong>HIGH PROTEIN</strong> Granola Bar</p>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">15g protein, 25g sugar, 350 calories</p>
+                    </div>
+                    <div class="quiz-option">
+                        <h4>Product B</h4>
+                        <p>Regular Granola Bar</p>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">5g protein, 12g sugar, 180 calories</p>
+                    </div>
+                </div>
+                <p style="margin-top: 2rem; text-align: center; color: var(--text-secondary);">
+                    Research shows consumers often choose Product A despite higher sugar and calories, demonstrating the power of protein marketing.
+                </p>
+            </div>
+
+            <div class="key-concepts" style="margin-top: 3rem;">
+                <div class="concept-card">
+                    <h3>Natural Fact vs. Social Fact</h3>
+                    <p><strong>Natural:</strong> The body needs protein for muscle synthesis</p>
+                    <p><strong>Social:</strong> More protein = better person/athlete</p>
+                </div>
+                <div class="concept-card">
+                    <h3>Cultural vs. Physical Fullness</h3>
+                    <p><strong>Physical:</strong> Caloric satiation</p>
+                    <p><strong>Cultural:</strong> Meal satisfaction from social context, tradition, and meaning</p>
+                </div>
+                <div class="concept-card">
+                    <h3>Label Promises vs. Reality</h3>
+                    <p><strong>Promise:</strong> "Muscle Building Formula"</p>
+                    <p><strong>Reality:</strong> Results depend on exercise, genetics, overall diet, and rest</p>
+                </div>
+                <div class="concept-card">
+                    <h3>Embodied Knowledge vs. Rules</h3>
+                    <p><strong>Embodied:</strong> Learning what your body needs through experience</p>
+                    <p><strong>Rules:</strong> Rigid diet plans that ignore individual variation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section id="conclusion" class="intro-section">
+        <div class="intro-content">
+            <h2>Synthesizing Complexities: The Cultural Work of Nutrition</h2>
+            <p class="intro-text">
+                This analysis reveals how nutrition functions as a powerful force in constructing identities, signaling social status, building communities, and pursuing aesthetic ideals in our increasingly mediatized world. The "expanding presence of protein claims" and viral diet trends are symptoms of broader cultural anxieties about health, the body, and the self.
+            </p>
+
+            <div class="data-viz">
+                <h3>Key Findings</h3>
+                <div style="display: grid; gap: 1rem; margin: 2rem 0;">
+                    <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--accent);">
+                        <strong>Protein Commodification:</strong> Transforms a basic nutrient into a lifestyle brand, creating a "health halo" that obscures nutritional complexity
+                    </div>
+                    <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--pastel-blue);">
+                        <strong>Embodied Practices:</strong> Bodybuilding diets represent ritualistic pursuit of "purity" through controlled consumption
+                    </div>
+                    <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--pastel-pink);">
+                        <strong>Gender Dynamics:</strong> Food choices remain deeply gendered, with "contamination" anxieties shaping consumption
+                    </div>
+                    <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--pastel-purple);">
+                        <strong>Social Media Impact:</strong> Creates "imagined communities" while propagating misinformation and unrealistic ideals
+                    </div>
+                </div>
+            </div>
+
+            <blockquote style="background: rgba(255,255,255,0.03); padding: 2rem; border-left: 4px solid var(--accent); margin: 3rem 0;">
+                <p style="font-size: 1.2rem; line-height: 1.8;">
+                    "The fundamental tension in contemporary nutrition: we have unprecedented access to information and choice, yet this same environment creates confusion, anxiety, and harmful practices. The promise of transformation through food becomes both empowering and profoundly disempowering."
+                </p>
+                <footer style="text-align: right; margin-top: 1rem; color: var(--text-secondary);">
+                    — From this analysis
+                </footer>
+            </blockquote>
+
+            <h3 style="margin-top: 3rem;">Moving Forward: Critical Engagement</h3>
+            <p class="intro-text">
+                Understanding nutrition as both biological necessity and cultural practice allows us to:
+            </p>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 1rem; background: rgba(255,255,255,0.03); margin: 0.5rem 0; border-radius: 10px;">
+                    <i class="fas fa-search" style="color: var(--accent); margin-right: 1rem;"></i>
+                    Deconstruct marketed "promises" and question information sources
+                </li>
+                <li style="padding: 1rem; background: rgba(255,255,255,0.03); margin: 0.5rem 0; border-radius: 10px;">
+                    <i class="fas fa-users" style="color: var(--accent); margin-right: 1rem;"></i>
+                    Recognize how cultural constructions of body ideals shape our choices
+                </li>
+                <li style="padding: 1rem; background: rgba(255,255,255,0.03); margin: 0.5rem 0; border-radius: 10px;">
+                    <i class="fas fa-balance-scale" style="color: var(--accent); margin-right: 1rem;"></i>
+                    Find balance between embodied knowledge and external dietary rules
+                </li>
+                <li style="padding: 1rem; background: rgba(255,255,255,0.03); margin: 0.5rem 0; border-radius: 10px;">
+                    <i class="fas fa-heart" style="color: var(--accent); margin-right: 1rem;"></i>
+                    Acknowledge the social and psychological dimensions of eating
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2023 Nutrition & Fitness Research Project. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#introduction">Introduction</a>
+            <a href="#protein">Research</a>
+            <a href="#profiles">Profiles</a>
+            <a href="https://github.com" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+        <p>&copy; 2023 An Anthropological Analysis of Contemporary Nutrition Practices</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Created for Anthropology of Food - Final Project</p>
     </footer>
 
-    <script src="js/main.js"></script>
+    <!-- Modal for Detailed Profiles -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Quiz interaction
+        function selectQuizOption(element) {
+            // Remove previous selections
+            element.parentElement.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.style.borderColor = 'transparent';
+                opt.style.background = 'rgba(255,255,255,0.05)';
+            });
+            
+            // Highlight selected
+            element.style.borderColor = 'var(--accent)';
+            element.style.background = 'rgba(233, 69, 96, 0.1)';
+        }
+
+        // Profile modal functionality
+        const profileData = {
+            bodybuilder: {
+                title: "The Bodybuilder: Jake's Story",
+                content: `
+                    <h3>A Day in the Life</h3>
+                    <p>Jake's alarm goes off at 5 AM. Before his feet hit the floor, he's already calculating his macros for the day. "It's not obsessive," he insists, "it's disciplined."</p>
+                    
+                    <h4>Daily Meal Plan:</h4>
+                    <ul>
+                        <li><strong>5:30 AM:</strong> Pre-workout shake (40g whey protein, banana, oats)</li>
+                        <li><strong>7:30 AM:</strong> Post-workout meal (6 egg whites, 2 whole eggs, rice cakes)</li>
+                        <li><strong>10:30 AM:</strong> Chicken breast (200g), sweet potato, broccoli</li>
+                        <li><strong>1:30 PM:</strong> Ground turkey (180g), white rice, mixed vegetables</li>
+                        <li><strong>4:30 PM:</strong> Protein shake with almond butter</li>
+                        <li><strong>7:30 PM:</strong> Salmon (200g), quinoa, asparagus</li>
+                        <li><strong>10:00 PM:</strong> Casein protein, handful of almonds</li>
+                    </ul>
+                    
+                    <h4>The Social Cost</h4>
+                    <p>"Dating is tough when you bring Tupperware to restaurants," Jake admits. "My friends think I'm crazy, but they don't understand—this is my art form. My body is my canvas."</p>
+                    
+                    <p>Jake spends approximately $400/month on supplements alone. His kitchen resembles a laboratory more than a cooking space, with food scales, labeled containers, and a whiteboard tracking daily intake.</p>
+                    
+                    <h4>Reflections on Gym Culture</h4>
+                    <blockquote>"There's definitely pressure to look a certain way. Instagram doesn't help—everyone's always posting their best angles with perfect lighting. Sometimes I wonder if I'm doing this for me or for the likes."</blockquote>
+                `
+            },
+            runner: {
+                title: "The Runner: Sarah's Journey",
+                content: `
+                    <h3>Breaking Free from Protein Obsession</h3>
+                    <p>Sarah's relationship with food transformed when she switched from weightlifting to distance running. "I was so indoctrinated into the high-protein mindset that I couldn't understand why I felt terrible during my runs."</p>
+                    
+                    <h4>The Paradigm Shift</h4>
+                    <p>After struggling with fatigue and poor performance, Sarah consulted a sports nutritionist who revolutionized her approach. "She told me carbs aren't the enemy—they're my best friend. It was like permission to eat again."</p>
+                    
+                    <h4>Current Approach:</h4>
+                    <ul>
+                        <li><strong>Morning:</strong> Oatmeal with berries, honey, and just a sprinkle of nuts</li>
+                        <li><strong>Pre-run:</strong> Banana or dates for quick energy</li>
+                        <li><strong>Post-run:</strong> Chocolate milk ("The bodybuilders judge me, but it works!")</li>
+                        <li><strong>Lunch:</strong> Whole grain pasta with vegetables</li>
+                        <li><strong>Dinner:</strong> Balanced meal with emphasis on carbs and vegetables</li>
+                    </ul>
+                    
+                    <h4>Challenging Gender Norms</h4>
+                    <p>"In running circles, there's less pressure to be 'tiny' than in general fitness. We celebrate strong, capable bodies. But I still get comments about my 'runner's appetite' when I load up my plate."</p>
+                    
+                    <blockquote>"Food freedom came when I stopped seeing food as numbers and started seeing it as fuel for what I love to do."</blockquote>
+                `
+            },
+            recreational: {
+                title: "The Recreational Gym-Goer: Alex's Balance",
+                content: `
+                    <h3>Navigating the Middle Ground</h3>
+                    <p>Alex represents the majority of college students trying to be "healthy" without letting fitness consume their lives. "I want to look good and feel good, but I also want to enjoy pizza night with my roommates."</p>
+                    
+                    <h4>The 80/20 Philosophy</h4>
+                    <p>"I try to eat well 80% of the time and leave 20% for life. Birthday parties, date nights, late-night study sessions—these matter too."</p>
+                    
+                    <h4>Social Media's Impact</h4>
+                    <p>"My Instagram feed is this weird mix of fitness influencers and food bloggers. One post makes me feel guilty about the cookie I just ate, the next is a recipe for triple chocolate brownies. It's exhausting."</p>
+                    
+                    <h4>Strategies for Balance:</h4>
+                    <ul>
+                        <li>Unfollowed accounts that triggered comparison</li>
+                        <li>Focuses on how food makes them feel, not just look</li>
+                        <li>Meal preps some basics but stays flexible</li>
+                        <li>Doesn't track macros obsessively</li>
+                    </ul>
+                    
+                    <blockquote>"The best diet is the one you can stick to without hating your life. I'm not going to be on a magazine cover, but I'm happy—that counts for something, right?"</blockquote>
+                `
+            },
+            nongym: {
+                title: "The Non-Gym Goer: Morgan's Perspective",
+                content: `
+                    <h3>Food as Culture, Not Calculation</h3>
+                    <p>Morgan offers a refreshing counterpoint to campus fitness culture. "My grandmother never counted a macro in her life, and she's 85 and thriving. There's wisdom in traditional food ways that we're losing."</p>
+                    
+                    <h4>Resisting the Optimization Obsession</h4>
+                    <p>"Everything on campus is about 'optimizing' and 'maximizing.' What happened to eating because something tastes good or connects you to your heritage?"</p>
+                    
+                    <h4>Cultural Food Practices:</h4>
+                    <ul>
+                        <li>Sunday family dinners with traditional recipes</li>
+                        <li>Cooking as a meditative practice, not meal prep</li>
+                        <li>Sharing food as community building</li>
+                        <li>Seasonal eating based on family traditions</li>
+                    </ul>
+                    
+                    <h4>The Pressure to Conform</h4>
+                    <p>"I feel judged in the dining hall when I'm not loading up on grilled chicken and broccoli. There's this unspoken rule that caring about your health means obsessing over protein and avoiding carbs."</p>
+                    
+                    <blockquote>"Food is memory, tradition, love. Reducing it to numbers on a nutrition label feels like losing something essentially human. My body knows what it needs without an app telling me."</blockquote>
+                `
+            }
+        };
+
+        function openProfile(profileType) {
+            const modal = document.getElementById('profileModal');
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = profileData[profileType].content;
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('profileModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('profileModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        entry.target.style.transition = 'all 0.6s ease';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections and cards
+        document.querySelectorAll('section, .concept-card, .research-card, .profile-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
