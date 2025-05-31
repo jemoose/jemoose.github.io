@@ -1,227 +1,516 @@
-<!-- Conclusion Section -->
-<section id="conclusion" class="intro-section">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beyond the Label: Cultural Fullness in Fitness Subcultures</title>
+    <style>
+        :root {
+            --bg: #111827;
+            --bg-darker: #0d1117;
+            --text: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent: #e94560;
+            --accent-light: #fd7a93;
+            --pastel-blue: #a7c5eb;
+            --pastel-pink: #ffc5c5;
+            --pastel-purple: #c5b6e0;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--bg-darker);
+            padding: 1.5rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.9)), url('https://source.unsplash.com/random/1920x1080/?fitness') no-repeat center center/cover;
+            padding: 0 5%;
+            text-align: center;
+        }
+        .hero-content {
+            max-width: 800px;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+        }
+        .hero .tagline {
+            font-style: italic;
+            margin-bottom: 2.5rem;
+            color: var(--text);
+            font-size: 1.1rem;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--text);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: var(--accent-light);
+            transform: translateY(-3px);
+        }
+
+        /* Content Sections */
+        .intro-section {
+            padding: 8rem 5% 5rem;
+        }
+        .intro-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--text);
+        }
+        .intro-text {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--text);
+        }
+
+        /* Cards and Components */
+        .concept-card, .research-card, .personal-anecdote, .profile-feature {
+            background: rgba(255,255,255,0.02);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .concept-card h3, .research-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        blockquote {
+            font-style: italic;
+            margin: 2rem 0;
+            padding: 1rem 2rem;
+            border-left: 4px solid var(--accent);
+            background: rgba(255,255,255,0.02);
+        }
+
+        /* Tags */
+        .pure-tag {
+            color: var(--accent);
+        }
+        .polluted-tag {
+            color: var(--pastel-pink);
+        }
+        .sacred-tag {
+            color: var(--pastel-blue);
+        }
+        .forbidden-tag {
+            color: var(--pastel-purple);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+        }
+        .modal-content {
+            background-color: var(--bg);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .close-modal {
+            color: var(--text-secondary);
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .close-modal:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            h2 { font-size: 2rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="logo">Beyond the Label</div>
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#theoretical">Theoretical Framework</a></li>
+        <li><a href="#protein">Protein Paradigm</a></li>
+        <li><a href="#embodied">Embodied Practices</a></li>
+        <li><a href="#gender">Gender Performance</a></li>
+        <li><a href="#social-media">Social Media</a></li>
+        <li><a href="#paradox">Modern Paradox</a></li>
+        <li><a href="#beyond">Beyond the Binary</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+        <li><a href="#references">References</a></li>
+    </ul>
+</nav>
+
+<!-- Hero Section -->
+<header id="home" class="hero">
+    <div class="hero-content">
+        <h1>Beyond the Label: When Eating Becomes Identity</h1>
+        <p>An Anthropological Analysis of Cultural Fullness and Symbolic Consumption in Contemporary Fitness Subcultures</p>
+        <p class="tagline">"Every meal becomes a search of how the food will meet minimum nutrition thresholds" — Exploring how bodybuilders and fitness enthusiasts transform eating from biological necessity into ritualized identity performance</p>
+        <a href="#introduction" class="cta-button">Begin Exploration</a>
+    </div>
+</header>
+
+<!-- Introduction Section: The Paradox of Modern Satiation -->
+<section id="introduction" class="intro-section">
     <div class="intro-content">
-        <h2>Synthesizing Complexities: The Cultural Work of Nutrition</h2>
+        <h2>When Full Isn't Enough: Understanding Cultural Fullness</h2>
         <p class="intro-text">
-            Let's examine contemporary nutrition practices through the lens of anthropological theory, personal experience, and ethnographic research. Nutrition functions as a powerful force in constructing identities, signaling social status, building communities, and pursuing aesthetic ideals in our increasingly mediatized world<sup>[1]</sup>. The "expanding presence of protein claims" and viral diet trends are not isolated phenomena but symptoms of broader cultural anxieties and aspirations related to health, the body, and the self.
-            Through this website, I hope to creatively and publicly disseminate these insights, inviting users to engage critically with their own food and body practices. I hope it will contribute to ongoing conversations about food's power to transform bodies and identities, revealing the cultural work nutrition does in contemporary fitness and social media landscapes.
+            In contemporary fitness subcultures, satiation extends far beyond the biological sensation of a full stomach. Drawing on Mary Douglas's foundational work in Purity and Danger, this analysis examines how "cultural fullness"—a sense of satisfaction derived from adherence to socially constructed rules and symbolic meanings—shapes dietary practices within gym and bodybuilding communities.
         </p>
-
-        <div class="data-viz">
-            <h3>Key Findings: The Interconnected Web of Nutrition Culture</h3>
-            <div style="display: grid; gap: 1rem; margin: 2rem 0;">
-                <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--accent);">
-                    <strong>Protein Commodification:</strong> Transforms a basic nutrient into a lifestyle brand worth $10.8B by 2030<sup>[10]</sup>, creating a "health halo" that obscures nutritional complexity. The marketing extends beyond traditional sources to encompass everyday foods, promising transformation through consumption.
-                </div>
-                <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--pastel-blue);">
-                    <strong>Embodied Practices:</strong> Bodybuilding dietary regimes represent ritualistic pursuits of "purity" through controlled consumption<sup>[1]</sup>. The meticulous attention to macros and "clean eating" reflects Douglas's concept of eliminating "dirt" as disorder to create meaningful order.
-                </div>
-                <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--pastel-pink);">
-                    <strong>Gender Dynamics:</strong> Food choices remain deeply gendered, with "contamination" anxieties shaping consumption<sup>[17]</sup>. Men avoid "feminine" foods to maintain masculine identity, while marketing adapts (Pepsi Max, "brogurt") to navigate these cultural boundaries.
-                </div>
-                <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--pastel-purple);">
-                    <strong>Social Media Impact:</strong> Creates "imagined communities"<sup>[1]</sup> while propagating misinformation—90% of adolescents exposed to unhealthy food marketing<sup>[5]</sup>, only 2% of WIEAD videos contain accurate information<sup>[34]</sup>. Algorithmic reinforcement creates echo chambers of dietary extremism.
-                </div>
-                <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--accent-light);">
-                    <strong>Labeling as Social Signal:</strong> Nutrition labels function as "commodified promises of transformation"<sup>[1]</sup>, with products averaging 6.5 marketing claims, nearly half claiming unsubstantiated scientific support<sup>[11]</sup>. The gap between promise and reality contributes to "dieting pain" and, in extreme cases, conditions like muscle dysmorphia<sup>[3]</sup>.
-                </div>
-            </div>
-        </div>
-
-        <blockquote style="background: rgba(255,255,255,0.03); padding: 2rem; border-left: 4px solid var(--accent); margin: 3rem 0;">
-            <p style="font-size: 1.2rem; line-height: 1.8;">
-                "The fundamental tension characterizing the contemporary nutritional landscape: a dialectic of empowerment and disempowerment. On one hand, individuals have unprecedented access to information, diverse food products, and online communities. On the other, this same environment is saturated with misinformation, conflicting messages, commercial pressures, and idealized imagery that can be profoundly disempowering, leading to confusion, anxiety, body dissatisfaction, and harmful dietary practices."
-            </p>
-            <footer style="text-align: right; margin-top: 1rem; color: var(--text-secondary);">
-                — Central thesis of this analysis
-            </footer>
-        </blockquote>
-
-        <h3 style="margin-top: 3rem;">The Power of Food in Contemporary Landscapes</h3>
         <p class="intro-text">
-            The pervasive "transformation" narrative—the promise that certain foods, supplements, or diets can fundamentally transform one's body and identity—acts as a double-edged sword<sup>[1]</sup>. When ideals are unrealistic or information misleading, this allure of transformation becomes a significant source of psychological distress. The entanglement of dietary choices with "identity, social status, and imagined ideals of the body" explains why this narrative is so potent and often problematic.
+            As both a computer science major and avid bodybuilder, I bring an embodied understanding to this analysis. My own experience mirrors what I've observed across campus: the transformation of eating from a pleasurable, social act into a calculated performance of identity. One metric dominates our world: consuming close to 1g of protein per pound of bodyweight for "optimal" muscle recovery. This tunnel vision transforms every meal into an anxious calculation, where foods are evaluated not for taste or cultural significance, but for their ability to meet "minimum nutrition thresholds."
         </p>
-
-        <div class="concept-card" style="margin: 2rem 0;">
-            <h3>Ethical Implications and Responsibilities</h3>
-            <p>This research points to significant ethical considerations for multiple stakeholders:</p>
-            <ul style="margin: 1rem 0; padding-left: 2rem;">
-                <li><strong>Food Manufacturers:</strong> Need for transparency beyond marketing "health halos"</li>
-                <li><strong>Social Media Platforms:</strong> Responsibility to curb misinformation and toxic trends</li>
-                <li><strong>Influencers:</strong> Ethical obligation to disclose qualifications and avoid harmful advice</li>
-                <li><strong>Regulatory Bodies:</strong> Continued evolution of labeling standards (FDA's new initiatives<sup>[55]</sup>)</li>
-                <li><strong>Consumers:</strong> Development of critical media literacy and embodied awareness</li>
-            </ul>
+        
+        <div class="concept-card">
+            <h3>Key Concept: Cultural Fullness</h3>
+            <blockquote>
+                "Cultural fullness emerges as a more encompassing concept, referring to a sense of completeness and satisfaction that arises from conformity to social norms, the successful performance of a valued identity, and the feeling of belonging achieved through shared practices." (Andrews, 2021)
+            </blockquote>
         </div>
-
-        <h3 style="margin-top: 3rem;">Moving Forward: Strategies for Critical Engagement</h3>
-        <p class="intro-text">
-            Understanding nutrition as both biological necessity and cultural practice allows us to develop more nuanced relationships with food.I propose the following approaches:
-        </p>
-        <ul style="list-style: none; padding: 0;">
-            <li style="padding: 1rem; background: rgba(255,255,255,0.03); margin: 0.5rem 0; border-radius: 10px;">
-                <i class="fas fa-search" style="color: var(--accent); margin-right: 1rem;"></i>
-                <strong>Deconstruct Marketed Promises:</strong> Question sources, examine evidence, and recognize the gap between marketing claims and nutritional science
-            </li>
-            <li style="padding: 1rem; background: rgba(255,255,255,0.03); margin: 0.5rem 0; border-radius: 10px;">
-                <i class="fas fa-users" style="color: var(--accent); margin-right: 1rem;"></i>
-                <strong>Recognize Cultural Constructions:</strong> Understand how gender, class, and cultural identity shape our food choices beyond biological needs
-            </li>
-            <li style="padding: 1rem; background: rgba(255,255,255,0.03); margin: 0.5rem 0; border-radius: 10px;">
-                <i class="fas fa-balance-scale" style="color: var(--accent); margin-right: 1rem;"></i>
-                <strong>Balance Embodied Knowledge with Science:</strong> Trust lived experience while remaining open to evidence-based nutritional guidance
-            </li>
-            <li style="padding: 1rem; background: rgba(255,255,255,0.03); margin: 0.5rem 0; border-radius: 10px;">
-                <i class="fas fa-heart" style="color: var(--accent); margin-right: 1rem;"></i>
-                <strong>Acknowledge Social and Psychological Dimensions:</strong> Recognize that "cultural fullness" matters as much as physical satiation
-            </li>
-            <li style="padding: 1rem; background: rgba(255,255,255,0.03); margin: 0.5rem 0; border-radius: 10px;">
-                <i class="fas fa-shield-alt" style="color: var(--accent); margin-right: 1rem;"></i>
-                <strong>Develop Media Literacy:</strong> Critically evaluate social media content, recognizing algorithmic biases and commercial interests
-            </li>
-        </ul>
-
-        <div class="research-card" style="margin-top: 3rem;">
-            <h3>The Value of Interdisciplinary Analysis</h3>
-            <p>This project demonstrates the power of combining:</p>
-            <ul style="margin: 1rem 0; padding-left: 2rem;">
-                <li><strong>Personal Experience:</strong> My embodied knowledge as a bodybuilder provides insider perspective on gym culture's dietary practices</li>
-                <li><strong>Anthropological Theory:</strong> Douglas's framework of purity/pollution illuminates how food classifications create social order<sup>[1]</sup></li>
-                <li><strong>Ethnographic Research:</strong> Campus interviews reveal diverse lived experiences beyond dominant fitness narratives</li>
-                <li><strong>Critical Media Analysis:</strong> Examination of social media trends exposes mechanisms of influence and misinformation</li>
-                <li><strong>Technical Perspective:</strong> As a computer science major, understanding algorithmic amplification of dietary trends</li>
-            </ul>
-        </div>
-
-        <h3 style="margin-top: 3rem;">Final Reflections: Toward a More Nuanced Food Culture</h3>
-        <p class="intro-text">
-            As we navigate the complex terrain of contemporary nutrition practices, we must resist both uncritical acceptance of marketed promises and complete rejection of nutritional science. The path forward requires what I call "critical nourishment"—an approach that:
-        </p>
-        <div style="background: linear-gradient(135deg, rgba(233, 69, 96, 0.1), rgba(167, 197, 235, 0.1)); padding: 2rem; border-radius: 20px; margin: 2rem 0;">
-            <ul style="list-style: none; padding: 0;">
-                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--accent); margin-right: 1rem;"></i>Honors both biological needs and cultural meanings</li>
-                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--accent); margin-right: 1rem;"></i>Questions gendered food hierarchies while respecting individual choices</li>
-                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--accent); margin-right: 1rem;"></i>Embraces community support while maintaining critical distance from toxic trends</li>
-                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--accent); margin-right: 1rem;"></i>Values transformation potential while accepting body diversity</li>
-                <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--accent); margin-right: 1rem;"></i>Integrates traditional food wisdom with contemporary nutritional knowledge</li>
-            </ul>
-        </div>
-        <p class="intro-text" style="text-align: center; font-size: 1.2rem; margin-top: 3rem;">
-            Ultimately, this analysis reveals that what we eat is never just about food—it's about who we are, who we aspire to be, and how we navigate the complex social worlds we inhabit.
-        </p>
     </div>
 </section>
 
-<!-- References Section -->
-<section id="references" style="background-color: var(--bg-darker); padding: 4rem 5%;">
+<!-- Section 2: Theoretical Framework - Douglas, Purity, and the Symbolic Meal -->
+<section id="theoretical" class="intro-section">
     <div class="intro-content">
-        <h2>References</h2>
-        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">Citations used throughout this analysis</p>
-        <ol style="line-height: 1.8; color: var(--text-secondary);">
-            <li>Douglas, Mary. <em>Purity and Danger: An Analysis of Concepts of Pollution and Taboo</em>. 2001.</li>
-            <li>Lupton, Deborah. <em>Food, the Body and the Self</em>. SAGE Publications, 1996.</li>
-            <li>Pope, Harrison G., et al. "Muscle Dysmorphia: Current Insights." <em>Psychology Research and Behavior Management</em>, 2016.</li>
-            <li>Kucharczuk, A. J., Oliver, T. L., & Dowdell, E. B. "Social media's influence on adolescents' food choices." <em>Appetite</em>, 168, 2022.</li>
-            <li>"Wellness Watch: The High-Protein Trend & What It Means for Retailers." CMA | SIMA.</li>
-            <li>"What's new in food marketing? Protein!" Food Politics by Marion Nestle, 2013.</li>
-            <li>"The Ultimate 7-Day High-Protein Diet Plan for Bodybuilders." Posture Perfect Wellness Center.</li>
-            <li>"Protein supplementation: the double-edged sword." PMC, 2024.</li>
-            <li>"A content analysis of marketing on the packages of dietary supplements." PubMed, 2021.</li>
-            <li>"Assessing gender differences in food preferences and physical activity." PMC, 2024.</li>
-            <li>"Should Clinicians Care About How Food Behaviors Express Gender Identity?" AMA Journal of Ethics, 2023.</li>
-            <li>"High-Protein Diets Are Popular — but They Certainly Aren't Sustainable." Sentient Media.</li>
-            <li>"How much protein should I eat?" NPR, 2024.</li>
-            <li>"Eat Like a Man: Can We Challenge the Idea of Masculinity's Relationship with Meat?" ProVeg.</li>
-            <li>"Gender and barbecue." OpenEdition Journals.</li>
-            <li>"Diners, Dudes, and Diets." Nursing Clio, 2020.</li>
-            <li>"Collaborative starvation and the invisible podium." ResearchGate, 2023.</li>
-            <li>"One day of eating: Tracing misinformation in 'What I Eat In A Day' videos." ResearchGate, 2023.</li>
-            <li>"The Hidden Harm of 'What I Eat in A Day' Videos." The Green and Gray.</li>
-            <li>"When an ALPHA MALE tells me that they're on the carnivore diet." Reddit r/nursing.</li>
-            <li>"Health and wellness influencer Janelle Rohner [Ozempic controversy]." Reddit.</li>
-            <li>"Body image and diets." Better Health Channel.</li>
-            <li>"THE ROLE OF SOCIAL MEDIA IN SHAPING ADOLESCENT EATING BEHAVIORS." IRJMETS, 2024.</li>
-            <li>"FDA's New Year, New Rules: Labeling for Healthier Choices." Holland & Knight, 2025.</li>
-        </ol>
-    </div>
-</section>    <!-- Gender and Food Section -->
-<section id="gender" class="intro-section">
-    <div class="intro-content">
-        <h2>Gender, Food, and Masculinity: Constructing Identities Through Diet</h2>
+        <h2>Matter Out of Place: How Fitness Culture Creates New Food Taboos</h2>
         <p class="intro-text">
-            The intersection of gender, food choices, and cultural narratives of masculinity forms a critical area of inquiry for understanding contemporary nutrition practices. Research consistently demonstrates that food preferences and eating habits are significantly influenced by gender<sup>[12]</sup>. These differences reflect deeply ingrained "dietary gender norms"<sup>[13]</sup> that shape not only what we eat but how we perform our gender identities through consumption.
+            Mary Douglas's concept of "matter out of place" provides a powerful lens for understanding fitness nutrition. Just as Douglas observed that "dirt is essentially disorder," fitness subcultures create elaborate systems of classification that transform ordinary foods into symbols of purity or pollution.
         </p>
-        <p class="intro-text">
-            Mary Douglas's work suggests that "many ideas about sexual dangers are better interpreted as symbols of the relation between parts of society, as mirroring designs of hierarchy or symmetry"<sup>[1]</sup>. This framework helps us understand how gendered food rules reflect broader social structures and power dynamics.
-        </p>
-
-        <div class="data-viz">
-            <h3>Gendered Food Associations: A Binary Under Pressure</h3>
+        
+        <div class="interactive-element">
+            <h3>The Context Test</h3>
+            <p>The same food can be transformed from pure to polluted based solely on context:</p>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
-                <div style="background: rgba(255,255,255,0.03); padding: 2rem; border-radius: 15px;">
-                    <h4 style="color: var(--pastel-blue); margin-bottom: 1rem;"><i class="fas fa-mars"></i> "Masculine" Foods</h4>
+                <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--accent);">
+                    <h4>White Rice: Post-workout</h4>
+                    <p><strong class="pure-tag">"PURE"</strong> - Glycogen replenishment, anabolic window optimization</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--pastel-pink);">
+                    <h4>White Rice: Before bed</h4>
+                    <p><strong class="polluted-tag">"POLLUTED"</strong> - Fat storage, wasted calories, insulin spike</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--pastel-blue);">
+                    <h4>White Rice: During bulking</h4>
+                    <p><strong class="sacred-tag">"SACRED"</strong> - Mass-building fuel</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--pastel-purple);">
+                    <h4>White Rice: During cutting</h4>
+                    <p><strong class="forbidden-tag">"FORBIDDEN"</strong> - Excess carbs, diet sabotage</p>
+                </div>
+            </div>
+            <p>This contextual transformation mirrors Andrews' analysis of breastfeeding, where "mother's milk appears as holy, pure and clean when it is given to an infant. When the very same substance is given to an older child it becomes symbolically impure or polluted."</p>
+        </div>
+        
+        <div class="research-integration">
+            <h3>Research Integration</h3>
+            <blockquote>
+                Douglas argued that "reflection on dirt involves reflection on the relation of order to disorder... rituals of purity and impurity create unity in experience." In fitness subcultures, meticulous meal prep, macro tracking, and supplement timing become modern purification rituals that create order from the "chaos" of unrestricted eating.
+            </blockquote>
+        </div>
+    </div>
+</section>
+
+<!-- Section 3: The Protein Paradigm - Commodification as Sacred Transformation -->
+<section id="protein" class="intro-section">
+    <div class="intro-content">
+        <h2>"Ice Cream but 30g of Protein!" - When Nutrition Metrics Eclipse Food Culture</h2>
+        <p class="intro-text">
+            On social media platforms, fitness influencers have mastered the art of nutritional alchemy. They transform traditionally "impure" foods—pasta, pancakes, ice cream—into acceptable choices by adding protein powder. This isn't mere recipe modification; it's a form of symbolic purification that reveals how deeply the protein paradigm has penetrated our food consciousness.
+        </p>
+        
+        <div class="personal-anecdote">
+            <h3>Personal Observation</h3>
+            <blockquote>
+                "Every Dartmouth café stocks Muscle Milk and Core Power, boasting 40g of protein per bottle. Protein bars masquerade as cookies. Athletes gravitate toward these options as quick, efficient 'recovery'—but at what cost to the social and cultural dimensions of eating?"
+            </blockquote>
+            <p>
+                The commodification of protein represents what Douglas would recognize as a new symbolic order. High-protein foods are sanctified, deemed "clean" and morally superior, while foods without prominent protein claims become suspect, potentially "polluting" to the carefully maintained bodily system.
+            </p>
+        </div>
+        
+        <div class="data-visualization">
+            <h3>The Evolution of Protein Marketing</h3>
+            <div style="display: flex; position: relative; margin: 3rem 0;">
+                <!-- Timeline container -->
+                <div style="position: absolute; top: 20px; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--accent), var(--pastel-blue));"></div>
+                
+                <!-- Timeline points -->
+                <div style="display: flex; justify-content: space-between; width: 100%; position: relative;">
+                    <div style="text-align: center; width: 150px;">
+                        <div style="width: 16px; height: 16px; border-radius: 50%; background: var(--accent); margin: 12px auto;"></div>
+                        <h4>2013</h4>
+                        <p>Protein enters mainstream marketing</p>
+                    </div>
+                    
+                    <div style="text-align: center; width: 150px;">
+                        <div style="width: 16px; height: 16px; border-radius: 50%; background: var(--pastel-purple); margin: 12px auto;"></div>
+                        <h4>2021</h4>
+                        <p>$2 billion supplement industry</p>
+                    </div>
+                    
+                    <div style="text-align: center; width: 150px;">
+                        <div style="width: 16px; height: 16px; border-radius: 50%; background: var(--pastel-blue); margin: 12px auto;"></div>
+                        <h4>2025</h4>
+                        <p>Projected $10.8 billion market</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display: flex; position: relative; margin: 4rem 0;">
+                <!-- Timeline container -->
+                <div style="position: absolute; top: 20px; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--pastel-pink), var(--accent-light));"></div>
+                
+                <!-- Timeline points -->
+                <div style="display: flex; justify-content: space-between; width: 100%; position: relative;">
+                    <div style="text-align: center; width: 150px;">
+                        <div style="width: 16px; height: 16px; border-radius: 50%; background: var(--pastel-pink); margin: 12px auto;"></div>
+                        <h4>Traditional food wisdom</h4>
+                        <p>Cultural and familial food practices</p>
+                    </div>
+                    
+                    <div style="text-align: center; width: 150px;">
+                        <div style="width: 16px; height: 16px; border-radius: 50%; background: var(--pastel-blue); margin: 12px auto;"></div>
+                        <h4>Macronutrient obsession</h4>
+                        <p>Quantification of all food intake</p>
+                    </div>
+                    
+                    <div style="text-align: center; width: 150px;">
+                        <div style="width: 16px; height: 16px; border-radius: 50%; background: var(--accent-light); margin: 12px auto;"></div>
+                        <h4>Loss of cultural meaning</h4>
+                        <p>Food reduced to nutrient delivery system</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section 4: Embodied Practices - The Bodybuilder's Ritual -->
+<section id="embodied" class="intro-section">
+    <div class="intro-content">
+        <h2>Sacred Suffering: How Dietary Discipline Creates Cultural Fullness</h2>
+        <p class="intro-text">
+            Within bodybuilding subcultures, dietary practices transcend mere nutrition to become identity-defining rituals. The meticulous weighing of food, the precise timing of meals, the careful macro calculations—these aren't just practical strategies but sacred acts that provide profound "cultural fullness" through their very difficulty.
+        </p>
+        
+        <div class="profile-feature">
+            <h3>Ethnographic Profile: Jake the Bodybuilder</h3>
+            <div style="background: rgba(255,255,255,0.03); padding: 2rem; border-radius: 15px; margin: 2rem 0;">
+                <h4>Daily Ritual:</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 0.5rem 0;"><i class="fas fa-clock" style="color: var(--accent); margin-right: 1rem;"></i><strong>5 AM:</strong> Pre-workout calculations begin before feet hit floor</li>
+                    <li style="padding: 0.5rem 0;"><i class="fas fa-utensils" style="color: var(--accent); margin-right: 1rem;"></i><strong>Schedule:</strong> 6 meals timed precisely around training</li>
+                    <li style="padding: 0.5rem 0;"><i class="fas fa-balance-scale" style="color: var(--accent); margin-right: 1rem;"></i><strong>Tools:</strong> Food scale as altar, Tupperware as chalice</li>
+                    <li style="padding: 0.5rem 0;"><i class="fas fa-quote-left" style="color: var(--accent); margin-right: 1rem;"></i>"My diet is a crucial part of my identity"</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="analysis-box">
+            <h3>Analysis</h3>
+            <p>
+                Andrews observed mothers enduring "unbearable" pain to continue breastfeeding, driven by social pressure to embody the "good mother" ideal. Similarly, bodybuilders embrace "dieting pain"—hunger, social isolation, obsessive planning—as necessary suffering that validates their commitment to the subculture's ideals. The pain itself becomes proof of purity.
+            </p>
+        </div>
+        
+        <div class="visual-comparison">
+            <h3>A Tale of Two Meals</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+                <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--pastel-blue);">
+                    <h4>Traditional Family Meal</h4>
                     <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 0.5rem 0;"><i class="fas fa-drumstick-bite"></i> Red meat (beef, pork) - "Real men eat meat"<sup>[13]</sup></li>
-                        <li style="padding: 0.5rem 0;"><i class="fas fa-fire"></i> High-fat, strongly flavored meals<sup>[12]</sup></li>
-                        <li style="padding: 0.5rem 0;"><i class="fas fa-beer"></i> Large portions, quick eating<sup>[12]</sup></li>
-                        <li style="padding: 0.5rem 0;"><i class="fas fa-utensils"></i> Dining out frequently<sup>[12]</sup></li>
-                        <li style="padding: 0.5rem 0;"><i class="fas fa-dumbbell"></i> Protein as "muscle fuel"<sup>[14]</sup></li>
+                        <li><i class="fas fa-users" style="color: var(--pastel-blue); margin-right: 0.5rem;"></i> Shared dishes</li>
+                        <li><i class="fas fa-comments" style="color: var(--pastel-blue); margin-right: 0.5rem;"></i> Conversation</li>
+                        <li><i class="fas fa-arrows-alt" style="color: var(--pastel-blue); margin-right: 0.5rem;"></i> Flexibility</li>
+                        <li><i class="fas fa-book" style="color: var(--pastel-blue); margin-right: 0.5rem;"></i> Cultural recipes</li>
                     </ul>
                 </div>
-                <div style="background: rgba(255,255,255,0.03); padding: 2rem; border-radius: 15px;">
-                    <h4 style="color: var(--pastel-pink); margin-bottom: 1rem;"><i class="fas fa-venus"></i> "Feminine" Foods</h4>
+                <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--accent);">
+                    <h4>Bodybuilder's Meal</h4>
                     <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 0.5rem 0;"><i class="fas fa-leaf"></i> Fruits, vegetables, salads<sup>[12]</sup></li>
-                        <li style="padding: 0.5rem 0;"><i class="fas fa-coffee"></i> Whole grains, yogurt<sup>[12]</sup></li>
-                        <li style="padding: 0.5rem 0;"><i class="fas fa-utensils"></i> Smaller, controlled portions<sup>[12]</sup></li>
-                        <li style="padding: 0.5rem 0;"><i class="fas fa-weight"></i> Diet products, "light" options<sup>[19]</sup></li>
-                        <li style="padding: 0.5rem 0;"><i class="fas fa-heart"></i> Health-conscious choices<sup>[12]</sup></li>
+                        <li><i class="fas fa-user" style="color: var(--accent); margin-right: 0.5rem;"></i> Individual portions</li>
+                        <li><i class="fas fa-volume-mute" style="color: var(--accent); margin-right: 0.5rem;"></i> Silent consumption</li>
+                        <li><i class="fas fa-clock" style="color: var(--accent); margin-right: 0.5rem;"></i> Rigid timing</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--accent); margin-right: 0.5rem;"></i> "Clean" foods</li>
                     </ul>
                 </div>
             </div>
-            <p style="text-align: center; margin-top: 1rem; color: var(--text-secondary);">
-                Studies show greater conformity to traditional male gender roles predicts more frequent beef and chicken intake and lower openness to vegetarianism<sup>[13]</sup>
-            </p>
         </div>
+    </div>
+</section>
 
-        <div class="concept-card" style="margin: 2rem 0;">
-            <h3>The Concept of "Gender Contamination" in Food Marketing</h3>
-            <p>Marketing scholar Jill Avery's work highlights consumer resistance to "brand gender-bending," especially when products cross gender boundaries<sup>[19]</sup>. This phenomenon is asymmetrical:</p>
-            <blockquote style="background: rgba(255,255,255,0.03); padding: 1.5rem; margin: 1.5rem 0; border-left: 4px solid var(--accent);">
-                "Given the political and power disparity that still exists between men and women, women's gender-bending consumption might be more dangerous to men than men's gender-bending consumption is to women"<sup>[17]</sup>
-            </blockquote>
-            <h4>Real-World Examples:</h4>
-            <ul style="margin-top: 1rem; padding-left: 2rem;">
-                <li><strong>Diet Coke → Pepsi Max:</strong> Rebranded with "dudes" and "extreme sportsmen" to avoid feminine associations<sup>[17]</sup></li>
-                <li><strong>Yogurt → "Brogurt":</strong> Marketed as protein-filled post-workout snack to thwart contamination<sup>[17]</sup></li>
-                <li><strong>"Soy Boy" Phenomenon:</strong> Pejorative term portraying soy consumption as weak/effeminate vs. masculine meat-eating<sup>[15]</sup></li>
-                <li><strong>Salad Avoidance:</strong> Men refuse to eat meat-free meals for fear of appearing less masculine<sup>[16]</sup></li>
-            </ul>
-        </div>
-
-        <div class="research-card" style="margin: 2rem 0;">
-            <h3>The Protein-Masculinity Complex</h3>
-            <p>My research reveals how protein consumption has become intrinsically linked with masculine performance:</p>
-            <ul style="margin: 1rem 0; padding-left: 2rem;">
-                <li>Men consume more protein than women, reinforced by cultural messaging<sup>[14]</sup></li>
-                <li>Meat-eating framed as symbol of traditional masculinity and resistance to "liberal" dietary norms<sup>[14]</sup></li>
-                <li>High-protein diets marketed as pathway to masculine strength and virility<sup>[14]</sup></li>
-                <li>Plant-based proteins face uphill battle against entrenched gender associations</li>
-            </ul>
-            <p style="margin-top: 1rem;">This connects to Douglas's concept of the body as a "model which can stand for any bounded system," where dietary choices become rituals to maintain the "purity" of masculine identity<sup>[1]</sup>.</p>
-        </div>
-
-        <div class="data-viz" style="margin-top: 2rem;">
-            <h3>Emerging Counter-Narratives: "Hybrid Masculinity"</h3>
-            <p>While traditional associations persist, my interviews reveal emerging patterns of resistance:</p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 2rem 0;">
+<!-- Section 5: Gender Performance Through Food -->
+<section id="gender" class="intro-section">
+    <div class="intro-content">
+        <h2>"Real Men Count Macros": Masculine Identity and Protein Anxiety</h2>
+        <p class="intro-text">
+            The gendered dimensions of fitness nutrition reveal how food choices become performances of identity. In gym culture, protein consumption serves as a marker of serious commitment and masculine strength. The cultural narrative persists: "real men eat meat," but it's evolved—now "real men" also track macros, avoid "feminine" foods, and maintain strict dietary discipline.
+        </p>
+        
+        <div class="gender-examples">
+            <h3>Gender Contamination Examples</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
                 <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 10px;">
-                    <h4 style="color: var(--accent);">Health-Conscious Masculinity</h4>
-                    <p>Some men redefine masculine ideals to include plant-based diets, valuing physical and mental well-being<sup>[13]</sup></p>
+                    <h4>Diet Coke → Pepsi Max</h4>
+                    <p>Rebranded with extreme sports to avoid feminine associations</p>
+                    <div style="width: 100%; height: 3px; background: linear-gradient(90deg, var(--pastel-pink), var(--pastel-blue)); margin: 1rem 0;"></div>
                 </div>
                 <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 10px;">
-                    <h4 style="color: var(--accent);">Vegan Athletes</h4>
-                    <p>High-profile athletes challenge meat-masculinity link by achieving peak performance on plant-based diets<sup>[13]</sup></p>
+                    <h4>Yogurt → "Brogurt"</h4>
+                    <p>Marketed as protein-filled muscle fuel</p>
+                    <div style="width: 100%; height: 3px; background: linear-gradient(90deg, var(--pastel-pink), var(--pastel-blue)); margin: 1rem 0;"></div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 10px;">
+                    <h4>Salads → "Power Bowls"</h4>
+                    <p>Reframed with masculine language</p>
+                    <div style="width: 100%; height: 3px; background: linear-gradient(90deg, var(--pastel-pink), var(--pastel-blue)); margin: 1rem 0;"></div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 10px;">
+                    <h4>The "Soy Boy" phenomenon</h4>
+                    <p>How plant proteins threaten masculine identity</p>
+                    <div style="width: 100%; height: 3px; background: linear-gradient(90deg, var(--pastel-pink), var(--pastel-blue)); margin: 1rem 0;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="critical-analysis">
+            <h3>Critical Analysis</h3>
+            <p>
+                This gendered food system reflects Douglas's insight that "many ideas about sexual dangers are better interpreted as symbols of the relation between parts of society." The avoidance of "feminine" foods functions as a boundary-maintenance ritual, protecting the "pure" masculine identity from contamination.
+            </p>
+            <blockquote style="background: rgba(255,255,255,0.03); padding: 1.5rem; margin: 1.5rem 0; border-left: 4px solid var(--accent);">
+                "Given the political and power disparity that still exists between men and women, women's gender-bending consumption might be more dangerous to men than men's gender-bending consumption is to women."
+            </blockquote>
+        </div>
+    </div>
+</section>
+
+<!-- Section 6: Virtual Communities and Social Media's Influence -->
+<section id="social-media" class="intro-section">
+    <div class="intro-content">
+        <h2>The Performance of Identity: How Social Media Reinforces Dietary Choices</h2>
+        <p class="intro-text">
+            Social media platforms have become a crucial space for the performance of identity, particularly in the context of dietary choices. Bodybuilders and fitness enthusiasts use social media to showcase their physiques, share their diets, and connect with like-minded individuals.
+        </p>
+        
+        <div class="personal-anecdote">
+            <h3>Personal Observation</h3>
+            <blockquote>
+                "As a bodybuilder, I feel pressure to present a perfect online image. I share my diet, my workouts, and my progress photos to inspire others and validate my own identity."
+            </blockquote>
+        </div>
+        
+        <div class="data-viz">
+            <h3>The Rise of Fitness Influencers</h3>
+            <div style="display: flex; position: relative; margin: 3rem 0;">
+                <!-- Timeline container -->
+                <div style="position: absolute; top: 20px; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--accent), var(--pastel-pink));"></div>
+                
+                <!-- Timeline points -->
+                <div style="display: flex; justify-content: space-between; width: 100%; position: relative;">
+                    <div style="text-align: center; width: 150px;">
+                        <div style="width: 16px; height: 16px; border-radius: 50%; background: var(--accent); margin: 12px auto;"></div>
+                        <h4>2015</h4>
+                        <p> Fitness influencers emerge on Instagram</p>
+                    </div>
+                    
+                    <div style="text-align: center; width: 150px;">
+                        <div style="width: 16px; height: 16px; border-radius: 50%; background: var(--pastel-purple); margin: 12px auto;"></div>
+                        <h4>2020</h4>
+                        <p>1 million+ fitness influencers on Instagram</p>
+                    </div>
+                    
+                    <div style="text-align: center; width: 150px;">
+                        <div style="width: 16px; height: 16px; border-radius: 50%; background: var(--pastel-pink); margin: 12px auto;"></div>
+                        <h4>2025</h4>
+                        <p>Projected 5 million+ fitness influencers</p>
+                    </div>
+                </div>
                 </div>
                 <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 10px;">
                     <h4 style="color: var(--accent);">Cultural Shift</h4>
@@ -740,11 +1029,15 @@
     <ul class="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#introduction">Introduction</a></li>
-        <li><a href="#protein">Protein Culture</a></li>
-        <li><a href="#profiles">Profiles</a></li>
+        <li><a href="#theoretical">Theoretical Framework</a></li>
+        <li><a href="#protein">Protein Paradigm</a></li>
+        <li><a href="#embodied">Embodied Practices</a></li>
+        <li><a href="#gender">Gender Performance</a></li>
         <li><a href="#social-media">Social Media</a></li>
-        <li><a href="#gender">Gender & Food</a></li>
-        <li><a href="#labels">Decoding Labels</a></li>
+        <li><a href="#paradox">Modern Paradox</a></li>
+        <li><a href="#beyond">Beyond the Binary</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+        <li><a href="#references">References</a></li>
     </ul>
 </nav>
 
@@ -1175,20 +1468,7 @@
 </section>
 
 <!-- References Section -->
-<section id="references" style="background-color: var(--bg-darker); padding: 4rem 5%;">
-    <div class="intro-content">
-        <h2>References</h2>
-        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">Citations used throughout this analysis</p>
-        <ol style="line-height: 1.8; color: var(--text-secondary);">
-            <li>Douglas, Mary. <em>Purity and Danger: An Analysis of Concepts of Pollution and Taboo</em>. 2001.</li>
-            <li>Lupton, Deborah. <em>Food, the Body and the Self</em>. SAGE Publications, 1996.</li>
-            <li>Pope, Harrison G., et al. "Muscle Dysmorphia: Current Insights." <em>Psychology Research and Behavior Management</em>, 2016.</li>
-            <li>Kucharczuk, A. J., Oliver, T. L., & Dowdell, E. B. "Social media's influence on adolescents' food choices." <em>Appetite</em>, 168, 2022.</li>
-            <li>Andrews, T. "The cultural dimensions of breastfeeding: An analysis of symbolic consumption." <em>Journal of Cultural Studies</em>, 2021.</li>
-            <li>Anderson, Benedict. <em>Imagined Communities: Reflections on the Origin and Spread of Nationalism</em>. Verso, 1983.</li>
-        </ol>
-    </div>
-</section>
+
             <div class="concept-card">
                 <h3><i class="fas fa-brain"></i> Embodied Knowledge</h3>
                 <p>The lived experience of nutrition and fitness, where individuals learn and internalize dietary "rules" through their bodies.</p>
@@ -2045,5 +2325,22 @@
         observer.observe(el);
     });
 </script>
+
+<!-- References Section -->
+<section id="references" style="background-color: var(--bg-darker); padding: 4rem 5%;">
+    <div class="intro-content">
+        <h2>References</h2>
+        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">Citations used throughout this analysis</p>
+        <ol style="line-height: 1.8; color: var(--text-secondary);">
+            <li>Douglas, Mary. <em>Purity and Danger: An Analysis of Concepts of Pollution and Taboo</em>. 2001.</li>
+            <li>Lupton, Deborah. <em>Food, the Body and the Self</em>. SAGE Publications, 1996.</li>
+            <li>Pope, Harrison G., et al. "Muscle Dysmorphia: Current Insights." <em>Psychology Research and Behavior Management</em>, 2016.</li>
+            <li>Kucharczuk, A. J., Oliver, T. L., & Dowdell, E. B. "Social media's influence on adolescents' food choices." <em>Appetite</em>, 168, 2022.</li>
+            <li>Andrews, T. "The cultural dimensions of breastfeeding: An analysis of symbolic consumption." <em>Journal of Cultural Studies</em>, 2021.</li>
+            <li>Anderson, Benedict. <em>Imagined Communities: Reflections on the Origin and Spread of Nationalism</em>. Verso, 1983.</li>
+        </ol>
+    </div>
+</section>
+
 </body>
 </html>
