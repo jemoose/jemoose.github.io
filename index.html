@@ -36,16 +36,26 @@
     /* Navigation */
     .navbar {
         position: fixed;
-        top: 0;
+        top: -100px; /* Start off-screen */
+        left: 0;
         width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 1.5rem 5%;
-        background: rgba(26, 26, 46, 0.95);
+        background: rgba(15, 15, 20, 0.95);
         backdrop-filter: blur(10px);
         z-index: 1000;
-        transition: var(--transition);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+        transition: top 0.5s ease-in-out;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .navbar.visible {
+        top: 0;
+        opacity: 1;
+        visibility: visible;
     }
 
     .navbar.scrolled {
@@ -771,7 +781,6 @@
 <!-- Section 1: The Paradox of Modern Satiation -->
 <section id="paradox" class="intro-section">
     <div class="intro-content">
-        <img src="images/protein-shake.jpg" alt="Protein shake with fitness background" style="max-width: 300px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
         <h2>When Full Isn't Enough: Understanding Cultural Fullness</h2>
         <p class="intro-text">
             In contemporary fitness subcultures, satiation extends far beyond the biological sensation of a full stomach. Focusing on Mary Douglas's foundational work in <em>Purity and Danger</em>, I explore how "cultural fullness"—a sense of satisfaction derived from adherence to socially constructed rules and symbolic meanings—shapes dietary practices within gym and bodybuilding communities.
@@ -1135,27 +1144,32 @@
  </footer>
  
  <script>
-    // Navbar scroll effect
+    // Navbar scroll behavior
+    const navbar = document.querySelector('.navbar');
+    const heroSection = document.querySelector('.hero');
+    let heroHeight = heroSection.offsetHeight;
+
+    // Update hero height on window resize
+    window.addEventListener('resize', () => {
+        heroHeight = heroSection.offsetHeight;
+    });
+
+    // Handle scroll event
     window.addEventListener('scroll', () => {
-        const navbar = document.querySelector('.navbar');
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
+        if (window.scrollY > heroHeight * 0.7) { // Adjust the multiplier as needed
+            navbar.classList.add('visible');
         } else {
-            navbar.classList.remove('scrolled');
+            navbar.classList.remove('visible');
         }
     });
- 
-    // Smooth scrolling
+
+    // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
         });
     });
  
